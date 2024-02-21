@@ -1,0 +1,63 @@
+import heapq
+
+class MinHeap:
+    def __init__(self):
+        self.heap = []
+
+    def build_min_heap(self, arr):
+        self.heap = arr
+        heapq.heapify(self.heap)
+
+    def push(self, value):
+        heapq.heappush(self.heap, value)
+
+    def pop(self):
+        if not self.heap:
+            return None
+        return heapq.heappop(self.heap)
+
+# Example usage:
+if __name__ == "__main__":
+    # Example with integers
+    min_heap_int = MinHeap()
+    min_heap_int.build_min_heap([4, 10, 3, 5, 1])
+    print("Min Heap (int):", min_heap_int.heap)
+
+    min_heap_int.push(2)
+    print("Min Heap after push(2):", min_heap_int.heap)
+
+    popped_int = min_heap_int.pop()
+    print("Popped element (int):", popped_int)
+    print("Min Heap after pop:", min_heap_int.heap)
+
+    # Example with floats
+    min_heap_float = MinHeap()
+    min_heap_float.build_min_heap([4.2, 10.5, 3.1, 5.7, 1.9])
+    print("\nMin Heap (float):", min_heap_float.heap)
+
+    min_heap_float.push(2.4)
+    print("Min Heap after push(2.4):", min_heap_float.heap)
+
+    popped_float = min_heap_float.pop()
+    print("Popped element (float):", popped_float)
+    print("Min Heap after pop:", min_heap_float.heap)
+
+    # Example with custom data structure
+    class CustomData:
+        def __init__(self, value):
+            self.value = value
+
+        def __lt__(self, other):
+            return self.value < other.value
+
+    min_heap_custom = MinHeap()
+    custom_objects = [CustomData(15), CustomData(8), CustomData(12), CustomData(10)]
+    min_heap_custom.build_min_heap(custom_objects)
+    print("\nMin Heap (custom data):", min_heap_custom.heap)
+
+    min_heap_custom.push(CustomData(5))
+    print("Min Heap after push(custom data):", min_heap_custom.heap)
+
+    popped_custom = min_heap_custom.pop()
+    print("Popped element (custom data):", popped_custom.value)
+    print("Min Heap after pop:", min_heap_custom.heap)
